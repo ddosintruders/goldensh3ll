@@ -9,6 +9,9 @@ Hyprland-supported distros would be the goal for such, and it would be sub-optim
 
 ## Installation
 
+> [!note]
+> GoldenSh3ll's development is first tested on Arch + Hyprland configuration. If you would like to test and optimize for a specific distribution, you can become a collaborator too :)
+
 ### Required Applications
 
 Check documentation relevant to your distribution. 
@@ -16,8 +19,6 @@ Check documentation relevant to your distribution.
 - Quickshell - https://quickshell.org/docs/v0.3.0/guide/install-setup/
 - Hyprland - https://wiki.hypr.land/Getting-Started/Installation/
 - Rofi - https://github.com/adi1090x/rofi (You can use any of the custom setups to override my default setup)
-
-These are distro specific, so please check the documentation here: https://quickshell.org/docs/v0.3.0/guide/install-setup/
 
 You can copy the raw files and paste them into your ```/.config/``` directory.
 
@@ -28,13 +29,13 @@ There are plans to allow for an install script that will require a minimal Arch 
 
 ## Trademarks
 
-GoldenSh3ll is an independent, community-built project and is not affiliated with, endorsed by, sponsored by, or associated with Apple Inc., Microsoft Corporation, Google LLC, the GNOME Foundation, KDE e.V., Hyprland, or any other referenced organization.
+**GoldenSh3ll is an independent, community-built project and is not affiliated with, endorsed by, sponsored by, or associated with Apple Inc., Microsoft Corporation, Google LLC, the GNOME Foundation, KDE e.V., Hyprland, or any other referenced organization.**
 
-Apple, macOS, and related marks are trademarks of Apple Inc.  
-Microsoft, Windows, and related marks are trademarks of Microsoft Corporation.  
-Google, Gemini, and related marks are trademarks of Google LLC.  
-GNOME is a trademark of the GNOME Foundation.  
-KDE is a trademark of KDE e.V.  
-Hyprland and Quickshell are used only to identify compatible software or technologies and remain the property of their respective owners.
+*Apple, macOS, and related marks are trademarks of Apple Inc.*  
+*Microsoft, Windows, and related marks are trademarks of Microsoft Corporation.*  
+*Google, Gemini, and related marks are trademarks of Google LLC.*  
+*GNOME is a trademark of the GNOME Foundation.*  
+*KDE is a trademark of KDE e.V.*  
+*Hyprland and Quickshell are used only to identify compatible software or technologies and remain the property of their respective owners.*
 
-All product names, logos, brands, and trademarks mentioned in this repository are the property of their respective owners. References are used for identification, compatibility, comparison, or descriptive purposes only. GoldenSh3ll does not claim ownership of, or imply endorsement by, any third-party trademark owner.
+***All product names, logos, brands, and trademarks mentioned in this repository are the property of their respective owners. References are used for identification, compatibility, comparison, or descriptive purposes only. GoldenSh3ll does not claim ownership of, or imply endorsement by, any third-party trademark owner.***
