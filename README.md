@@ -1,8 +1,11 @@
-# GoldenSh3ll (GoldenShell)
+<div align="center">
+  <img alt="GoldenSh3ll Logo" src="https://github.com/ddosintruders/goldensh3ll/blob/main/assets/GoldenSh3ll%20logo%20png.png" width="100" />
+  <h1>GoldenSh3ll (GoldenShell)</h1>
+  <h2>Open-source opinionated <br>
+    desktop environment for Wayland Compositors</h2>
+</div>
 
-GoldenSh3ll aims for a modern, polished look and feel of dekstop environments while emphasizing on usability and simplicity.
-
-## Behind the scope
+### Behind the scope
 
 GoldenSh3ll was initiated to revolve around desktop simplicity while having the look and feel of corporate-grade polish like macOS and Windows, except enhancing and simplifying over the base visuals.
 Hyprland-supported distros would be the goal for such, and it would be sub-optimal to only optimize for a specific distribution.
