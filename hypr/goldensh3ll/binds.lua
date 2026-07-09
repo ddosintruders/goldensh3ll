@@ -33,8 +33,11 @@ local mainMod     = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
+-- Log out and return to the display manager (uwsm-aware, logind fallback).
 hl.bind(mainMod .. " + M",
-    hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+    hl.dsp.exec_cmd(
+        'if command -v uwsm >/dev/null 2>&1 && uwsm check is-active >/dev/null 2>&1; then uwsm stop; ' ..
+        'else hyprctl dispatch exit; fi; sleep 2; loginctl terminate-session "$XDG_SESSION_ID"'))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
@@ -42,6 +45,23 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+
+---------------------------------
+---- GOLDENSH3LL SHELL BINDS ----
+---------------------------------
+
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("qs ipc call lockscreen lock"))       -- Lock screen
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("qs ipc call launcher toggle"))   -- Start menu
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("qs ipc call settings toggle"))       -- System settings
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("qs ipc call wallpaper next"))        -- Next wallpaper
+
+-- Windows key alone opens the Start menu (release bind, like `bindr` in
+-- classic Hyprland config). Note: also fires after Super+drag interactions.
+hl.bind(mainMod .. " + SUPER_L", hl.dsp.exec_cmd("qs ipc call launcher toggle"), { release = true })
+
+-- Screenshots: PrtSc = full screen, SUPER+SHIFT+S = draw a region.
+hl.bind("Print", hl.dsp.exec_cmd("qs ipc call capture full"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("qs ipc call capture region"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -57,9 +77,11 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- Example special workspace (scratchpad)
+-- Example special workspace (scratchpad).
+-- Move-to-scratchpad lives on ALT because SUPER+SHIFT+S is the region
+-- screenshot (Windows-style snip).
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + ALT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -78,8 +100,14 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
     { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+-- Routed through the shell so the on-screen display reacts; falls back to
+-- brightnessctl when the shell is not running.
+hl.bind("XF86MonBrightnessUp",
+    hl.dsp.exec_cmd("qs ipc call brightness up || brightnessctl -e4 -n2 set 5%+"),
+    { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",
+    hl.dsp.exec_cmd("qs ipc call brightness down || brightnessctl -e4 -n2 set 5%-"),
+    { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })

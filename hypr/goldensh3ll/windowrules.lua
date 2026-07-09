@@ -11,6 +11,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    -- The GoldenSh3ll settings app opens as a centered floating window.
+    name  = "float-goldensh3ll-settings",
+    match = { title = "^GoldenSh3ll Settings$" },
+
+    float = true,
+})
+
+hl.window_rule({
     -- Fix some dragging issues with XWayland
     name     = "fix-xwayland-drags",
     match    = {

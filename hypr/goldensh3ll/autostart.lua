@@ -3,8 +3,10 @@
 ------- SPDX-License-Identifier: GPL-3.0-or-later --------
 ----------------------------------------------------------
 
--- Customize your autostart apps if needed, this will only house hyprpaper & firefox for a default configuration.
+-- Customize your autostart apps if needed. The defaults start the wallpaper
+-- daemon (hyprpaper), the GoldenSh3ll shell (quickshell), firefox, and the
+-- polkit agent (required for privileged settings such as Time & Date).
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprpaper & firefox")
+    hl.exec_cmd("hyprpaper & qs & firefox & systemctl --user enable --now hyprpolkitagent")
 end)
