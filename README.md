@@ -11,11 +11,11 @@
   </p>
 </div>
 
-GoldenSh3ll merges the two desktops people actually know — a **macOS-style top bar** and a **Windows-style taskbar** — into one corporate-grade shell for Hyprland, with glass materials, wallpaper-driven color, and a full settings application. No terminal required after install.
+GoldenSh3ll merges the two familiar desktop layouts, a **macOS-style top bar** and a **Windows-style taskbar** into one corporate-grade shell for Hyprland, with glass materials, wallpaper-driven color, and a full settings application. No terminal required after install.
 
 ### Behind the scope
 
-GoldenSh3ll was initiated to revolve around desktop simplicity while having the look and feel of corporate-grade polish like macOS and Windows, except enhancing and simplifying over the base visuals. Hyprland-supported distros are the goal — it would be sub-optimal to only optimize for a specific distribution.
+GoldenSh3ll was initiated to revolve around desktop simplicity while having the look and feel of corporate-grade polish like macOS and Windows, except enhancing and simplifying over the base visuals. Hyprland-supported distros are the goal and it would be sub-optimal to only optimize for a specific distribution.
 
 ## Features (v0.21)
 
@@ -70,6 +70,7 @@ Profile (name + avatar presets/custom) · Appearance (dark mode with **system-wi
 | PipeWire + WirePlumber | Audio widgets |
 | NetworkManager | Network widgets |
 | xdg-utils | Default apps + web search |
+| hyprpolkitagent | PolicyKit Authentication |
 
 ### Optional (feature-gated, everything degrades gracefully)
 
@@ -95,8 +96,13 @@ cd goldensh3ll
 cp -r hypr quickshell ~/.config/
 ```
 
-Quickshell picks up `~/.config/quickshell/shell.qml` automatically — it is autostarted by the Hyprland config, or run `qs` manually. To preview from the repo without touching your config: `qs -p ./quickshell/shell.qml`.
+Quickshell picks up `~/.config/quickshell/shell.qml` automatically — it is autostarted by the Hyprland config, or run `qs` manually. 
 
+To preview from the repo without touching your config: 
+
+```sh
+qs -p ./quickshell/shell.qml
+```
 > [!CAUTION]
 > Please back up any existing dotfiles before installing. This project assumes a clean, minimal installation.
 
